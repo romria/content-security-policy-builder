@@ -1,11 +1,10 @@
 import '../styles/index.css';
-import {CSP_KEYS, SETTINGS_MAP} from './constants';
+import {CSP_KEYS, FEATURES} from './constants';
 
 Object.fromEntries = arr => Object.assign({}, ...Array.from(arr, k => ({[k]: false})));
-const boxKeys = Object.keys(SETTINGS_MAP);
+const boxKeys = Object.keys(FEATURES);
 const boxValues = Object.fromEntries(boxKeys);
 
-/* */
 let cspObj = {};
 let cspStr = '';
 const customIDs = {
@@ -59,7 +58,7 @@ const generateCSPObj = () => {
     const bVal = boxValues[k];
     if (!bVal) return;
 
-    const targetSettings = SETTINGS_MAP[k];
+    const targetSettings = FEATURES[k];
     const targetKeys = Object.keys(targetSettings);
 
     targetKeys.forEach((tKey) => {
@@ -130,4 +129,6 @@ document.getElementById("btnReset").onclick = () => {
   generateCSP();
 }
 
-generateCSP();
+window.addEventListener("load", () => {
+  generateCSP();
+});

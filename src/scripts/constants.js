@@ -7,7 +7,7 @@ export const CSP_KEYS = [
   'upgrade-insecure-requests', 'block-all-mixed-content'
 ];
 
-export const SETTINGS_MAP = {
+export const FEATURES = {
   gtm: { // ToDo: add unsafe-inline note: https://developers.google.com/tag-platform/tag-manager/web/csp#enable_the_container_tag_to_use_csp
     'script-src': ["'unsafe-inline'", 'https://www.googletagmanager.com'],
     'img-src': ['www.googletagmanager.com'],
@@ -130,6 +130,13 @@ export const SETTINGS_MAP = {
     'img-src': ['https://www.google.com'],
     'frame-src': ['https://bid.g.doubleclick.net'],
   },
+  gRecapcha: { // https://developers.google.com/recaptcha/docs/faq#im-using-content-security-policy-csp-on-my-website.-how-can-i-configure-it-to-work-with-recaptcha
+    'script-src': ['https://www.google.com/recaptcha', 'https://www.gstatic.com/recaptcha', 'https://www.google.com/js'],
+    'img-src': ['https://www.gstatic.com/recaptcha'],
+    'font-src': ['https://fonts.gstatic.com'],
+    'frame-src': ['https://www.google.com/recaptcha', 'https://recaptcha.google.com/recaptcha'],
+    'style-src': ['https://www.gstatic.com/recaptcha'],
+  },
   floodl: { // https://developers.google.com/tag-platform/tag-manager/web/csp#floodlight
     'img-src': [{var: 'floodID', getVal: (v) => `https://${v}.fls.doubleclick.net`}],
   },
@@ -205,9 +212,15 @@ export const SETTINGS_MAP = {
     'style-src': ["'unsafe-inline'"],
     'img-src': ['https://v2assets.zopim.io', 'https://static.zdassets.com', 'data:'],
   },
-  // livechat: { // ToDo: https://www.livechat.com/help/use-livechat-with-content-security-policy/
-  //
-  // },
+  livechat: { // https://www.livechat.com/help/use-livechat-with-content-security-policy/ (v3)
+    'script-src': ["'unsafe-inline'", "'unsafe-eval'", "*.livechatinc.com", '*.youtube.com', '*.livechat-static.com', '*.google.com'],
+    'media-src': ['*.livechatinc.com', '*.youtube.com', '*.google.com', '*.livechat-static.com'],
+    'object-src': ['*.livechatinc.com', '*.youtube.com', '*.google.com'],
+    'child-src': ['*.livechatinc.com', '*.youtube.com', '*.google.com'],
+    'img-src': ['*.files-text.com', '*.livechatinc.com', '*.youtube.com', '*.google.com', '*.livechat-files.com', '*.livechat-static.com'],
+    'style-src': ['unsafe-inline', '*.livechatinc.com', '*.youtube.com', '*.google.com'],
+    'connect-src': ['*.livechatinc.com', '*.text.com', '*.youtube.com', '*.google.com'],
+  },
   ctm: {
     'script-src': [{var: 'ctmID', getVal: (v) => `https://${v}.tctm.co`}],
     'connect-src': [{var: 'ctmID', getVal: (v) => `https://${v}.tctm.co`}],
