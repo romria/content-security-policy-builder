@@ -9,16 +9,17 @@ export const CSP_KEYS = [
 ];
 
 export const FEATURES = {
-  gtm: { // ToDo: add unsafe-inline note: https://developers.google.com/tag-platform/tag-manager/web/csp#enable_the_container_tag_to_use_csp
+  gtm: { // https://developers.google.com/tag-platform/tag-manager/web/csp#enable_the_container_tag_to_use_csp
     'script-src': ["'unsafe-inline'", 'https://www.googletagmanager.com'],
-    'img-src': ['www.googletagmanager.com'],
+    'img-src': ['https://www.googletagmanager.com'],
+    'connect-src': ['https://www.googletagmanager.com', 'https://www.google.com'],
   },
   gtmCustomVars: { // https://developers.google.com/tag-platform/tag-manager/web/csp#custom_javascript_variables
     'script-src': ["'unsafe-inline'"],
   },
   gtmPreviewMode: { // https://developers.google.com/tag-platform/tag-manager/web/csp#preview_mode
-    'script-src': ['https://tagmanager.google.com'],
-    'style-src': ['https://tagmanager.google.com', 'https://fonts.googleapis.com'],
+    'script-src': ['https://googletagmanager.com', 'https://tagmanager.google.com'],
+    'style-src': ['https://googletagmanager.com', 'https://tagmanager.google.com', 'https://fonts.googleapis.com'],
     'img-src': ['https://ssl.gstatic.com', 'https://www.gstatic.com'],
     'font-src': ['https://fonts.gstatic.com', 'data:'],
   },
@@ -27,10 +28,11 @@ export const FEATURES = {
     'img-src': ['https://*.google-analytics.com', 'https://*.googletagmanager.com'],
     'connect-src': ['https://*.google-analytics.com', 'https://*.analytics.google.com', 'https://*.googletagmanager.com'],
   },
-  ga4signal: { // For Google Analytics 4 (Google Analytics) deployments using Google Signals, the CSP must include the following directives:
+  ga4signal: { // https://developers.google.com/tag-platform/tag-manager/web/csp#google_analytics_4_google_analytics (Google Signals)
     'script-src': ['https://*.googletagmanager.com'],
-    'img-src': ['https://*.google-analytics.com', 'https://*.analytics.google.com', 'https://*.googletagmanager.com', 'https://*.g.doubleclick.net', 'https://*.google.com'], // incl 'https://*.google.<TLD>'
-    'connect-src': ['https://*.google-analytics.com', 'https://*.analytics.google.com', 'https://*.googletagmanager.com', 'https://*.g.doubleclick.net', 'https://*.google.com'], // 'https://*.google.<TLD>'
+    'img-src': ['https://*.google-analytics.com', 'https://*.googletagmanager.com', 'https://*.g.doubleclick.net', 'https://*.google.com'], // incl 'https://*.google.<TLD>'
+    'connect-src': ['https://*.google-analytics.com', 'https://*.analytics.google.com', 'https://*.googletagmanager.com', 'https://*.g.doubleclick.net', 'https://*.google.com', 'https://pagead2.googlesyndication.com'], // 'https://*.google.<TLD>'
+    'frame-src': ['https://www.googletagmanager.com'],
   },
   gTLD: {
     'img-src': [
@@ -132,17 +134,16 @@ export const FEATURES = {
     'frame-src': ['https://bid.g.doubleclick.net'],
   },
   gRecapcha: { // https://developers.google.com/recaptcha/docs/faq#im-using-content-security-policy-csp-on-my-website.-how-can-i-configure-it-to-work-with-recaptcha
-    'script-src': ['https://www.google.com/recaptcha', 'https://www.gstatic.com/recaptcha', 'https://www.google.com/js'],
-    'img-src': ['https://www.gstatic.com/recaptcha'],
-    'font-src': ['https://fonts.gstatic.com'],
-    'frame-src': ['https://www.google.com/recaptcha', 'https://recaptcha.google.com/recaptcha'],
-    'style-src': ['https://www.gstatic.com/recaptcha'],
+    'script-src': ['https://www.google.com/recaptcha/', 'https://www.gstatic.com/recaptcha/'],
+    'frame-src': ['https://www.google.com/recaptcha/', 'https://recaptcha.google.com/recaptcha/'],
+    'connect-src': ['https://www.google.com/recaptcha/'],
   },
   floodl: { // https://developers.google.com/tag-platform/tag-manager/web/csp#floodlight
-    'img-src': [{var: 'floodID', getVal: (v) => `https://${v}.fls.doubleclick.net`}],
+    'img-src': [{var: 'floodID', getVal: (v) => `https://${v}.fls.doubleclick.net`}, 'https://adservice.google.com', 'https://www.googletagmanager.com'],
+    'connect-src': ['https://pagead2.googlesyndication.com', 'https://www.google.com', 'https://www.googleadservices.com', 'https://ad.doubleclick.net'],
   },
   floodCS: {
-    'frame-src': [{var: 'floodID', getVal: (v) => `https://${v}.fls.doubleclick.net`}],
+    'frame-src': [{var: 'floodID', getVal: (v) => `https://${v}.fls.doubleclick.net`}, 'https://www.googletagmanager.com'],
   },
   floodImg: {
     'img-src': ['https://ad.doubleclick.net'],
@@ -167,12 +168,12 @@ export const FEATURES = {
     'worker-src': ['blob:'],
     'connect-src': ['https://settings.luckyorange.net', 'wss://*.visitors.live', 'https://pubsub.googleapis.com', 'https://api.luckyorange.com'],
   },
-  hotjar: { // https://help.hotjar.com/hc/en-us/articles/115011640307-Content-Security-Policies
-    'script-src': ["'unsafe-inline'", 'https://static.hotjar.com', 'https://script.hotjar.com'],
-    'img-src': ['https://static.hotjar.com', 'https://script.hotjar.com'],
+  hotjar: { // https://help.hotjar.com/hc/en-us/articles/36820026388881-Content-Security-Policies
+    'script-src': ["'unsafe-inline'", 'https://*.hotjar.com'],
+    'img-src': ['https://*.hotjar.com'],
     'connect-src': ['https://*.hotjar.com', 'https://*.hotjar.io', 'wss://*.hotjar.com'],
-    'font-src': ['https://script.hotjar.com'],
-    'style-src': ["'unsafe-inline'", 'https://static.hotjar.com', 'https://script.hotjar.com']
+    'font-src': ['https://*.hotjar.com'],
+    'style-src': ["'unsafe-inline'", 'https://*.hotjar.com'],
   },
 
   intercom: { // https://www.intercom.com/help/en/articles/3894-using-intercom-with-content-security-policy
@@ -193,21 +194,22 @@ export const FEATURES = {
     'connect-src': [
       'https://via.intercom.io', 'https://api.intercom.io', 'https://api.au.intercom.io', 'https://api.eu.intercom.io',
       'https://api-iam.intercom.io', 'https://api-iam.eu.intercom.io', 'https://api-iam.au.intercom.io', 'https://api-ping.intercom.io',
+      'https://*.intercom-messenger.com', 'wss://*.intercom-messenger.com',
       'https://nexus-websocket-a.intercom.io', 'wss://nexus-websocket-a.intercom.io', 'https://nexus-websocket-b.intercom.io',
       'wss://nexus-websocket-b.intercom.io', 'https://nexus-europe-websocket.intercom.io', 'wss://nexus-europe-websocket.intercom.io',
       'https://nexus-australia-websocket.intercom.io', 'wss://nexus-australia-websocket.intercom.io', 'https://uploads.intercomcdn.com',
-      'https://uploads.intercomcdn.eu', 'https://uploads.au.intercomcdn.com', 'https://uploads.intercomusercontent.com'
+      'https://uploads.intercomcdn.eu', 'https://uploads.eu.intercomcdn.com', 'https://uploads.au.intercomcdn.com', 'https://uploads.intercomusercontent.com'
     ],
     'form-action': ['https://intercom.help', 'https://api-iam.intercom.io', 'https://api-iam.eu.intercom.io', 'https://api-iam.au.intercom.io'],
-    'media-src': ['https://js.intercomcdn.com'],
+    'media-src': ['https://js.intercomcdn.com', 'https://downloads.intercomcdn.com', 'https://downloads.intercomcdn.eu', 'https://downloads.au.intercomcdn.com'],
   },
   chatlio: { // https://chatlio.com/docs/content-security-policy-csp/
-    'script-src': ['https://w.chatlio.com'],
-    'connect-src': ['https://api.chatlio.com', 'https://api-cdn.chatlio.com', 'wss://push.chatlio.com', 'wss://ws.pusherapp.com'],
-    'img-src': ['data:', 'https://w.chatlio.com', 'https://avatars.slack-edge.com', 'https://files.slack.com', 'https://files-origin.slack.com', 'https://secure.gravatar.com', 'https://uploads-cdn.chatlio.com'],
-    'style-src': ["'unsafe-inline'"],
+    'script-src': ['https://*.chatlio.com', 'https://*.pusher.com', 'https://*.pusherapp.com'],
+    'connect-src': ['https://*.chatlio.com', 'https://*.pusher.com', 'wss://*.chatlio.com', 'wss://*.pusherapp.com'],
+    'img-src': ['*'],
+    'style-src': ["'unsafe-inline'", 'https://*.chatlio.com'],
   },
-  zendesk: { // https://developer.zendesk.com/documentation/classic-web-widget-sdks/web-widget/integrating-with-google/csp/
+  zendesk: { // https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/web/csp/
     'script-src': ['https://static.zdassets.com', 'https://ekr.zdassets.com', 'https://ekr.zendesk.com', {var: 'zendeskSubdomain', getVal: (v) => `https://${v}.zendesk.com`}, 'https://*.zopim.com', 'https://zendesk-eu.my.sentry.io'],
     'connect-src': ['https://static.zdassets.com', 'https://ekr.zdassets.com', 'https://ekr.zendesk.com', {var: 'zendeskSubdomain', getVal: (v) => `https://${v}.zendesk.com`}, 'https://*.zopim.com', 'https://zendesk-eu.my.sentry.io', {var: 'zendeskSubdomain', getVal: (v) => `wss://${v}.zendesk.com`}, 'wss://*.zopim.com'],
     'style-src': ["'unsafe-inline'"],
@@ -228,11 +230,11 @@ export const FEATURES = {
   },
 
   bugsnag: { // https://docs.bugsnag.com/platforms/javascript/faq/#can-i-use-bugsnag-with-csp
-    'connect-src': ['https://*.bugsnag.com'],
+    'connect-src': ['https://*.bugsnag.com', 'https://*.bugsnag.smartbear.com'],
     'script-src': ['https://d2wy8f7a9ursnm.cloudfront.net'],
   },
   newrelic: { // https://docs.newrelic.com/docs/browser/new-relic-browser/getting-started/compatibility-requirements-browser-monitoring/
-    'script-src': ["'unsafe-inline'", 'https://js-agent.newrelic.com', 'https://*.nr-data.net'],
+    'script-src': ["'unsafe-inline'", 'https://js-agent.newrelic.com'],
     'connect-src': ['https://*.nr-data.net'],
   },
   sentry: {
@@ -243,10 +245,10 @@ export const FEATURES = {
     'script-src': ["'unsafe-inline'"],
   },
 
-  stripe: { // https://stripe.com/docs/security/guide#content-security-policy
-    'script-src': ['https://js.stripe.com'],
+  stripe: { // https://docs.stripe.com/security/guide#content-security-policy
+    'script-src': ['https://js.stripe.com', 'https://*.js.stripe.com'],
     'connect-src': ['https://api.stripe.com'],
-    'frame-src': ['https://js.stripe.com'],
+    'frame-src': ['https://js.stripe.com', 'https://*.js.stripe.com'],
   },
   stripeRedirect: {
     'frame-src': ['https://hooks.stripe.com'],
@@ -260,17 +262,17 @@ export const FEATURES = {
     'style-src': ["'unsafe-inline'", 'https://fonts.googleapis.com'],
     'worker-src': ['blob:'],
   },
-  // ToDo: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/require-trusted-types-for
-  stripeCheckout: { // https://stripe.com/docs/security/guide#content-security-policy
+  stripeCheckout: { // https://docs.stripe.com/security/guide#content-security-policy
     'script-src': ['https://checkout.stripe.com'],
     'connect-src': ['https://checkout.stripe.com'],
     'frame-src': ['https://checkout.stripe.com'],
     'img-src': ['https://*.stripe.com'],
   },
-  stripeConnect: {
+  stripeConnect: { // https://docs.stripe.com/security/guide#content-security-policy
     'script-src': ['https://connect-js.stripe.com', 'https://js.stripe.com'],
     'style-src': ["'unsafe-inline'"],
-    'frame-src': ['https://connect-js.stripe.com', 'https://b.stripecdn.com'],
+    'frame-src': ['https://connect-js.stripe.com', 'https://js.stripe.com'],
+    'img-src': ['https://*.stripe.com'],
   },
   gFonts: {
     'style-src': ['https://fonts.googleapis.com'],
