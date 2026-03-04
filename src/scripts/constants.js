@@ -1,6 +1,7 @@
 export const CSP_KEYS = [
-  'script-src', 'style-src', 'img-src',
-  'font-src', 'manifest-src', 'connect-src',
+  'script-src', 'script-src-elem', 'script-src-attr',
+  'style-src', 'style-src-elem', 'style-src-attr',
+  'img-src', 'font-src', 'manifest-src', 'connect-src',
   'object-src', 'media-src', 'worker-src',
   'form-action', 'base-uri', 'frame-src',
   'child-src', 'frame-ancestors', 'prefetch-src',
@@ -207,19 +208,19 @@ export const FEATURES = {
     'style-src': ["'unsafe-inline'"],
   },
   zendesk: { // https://developer.zendesk.com/documentation/classic-web-widget-sdks/web-widget/integrating-with-google/csp/
-    'script-src': ['https://static.zdassets.com', 'https://ekr.zdassets.com', 'https://ekr.zendesk.com', {var: 'zendeskSubdomain', getVal: (v) => `https://${v}.zendesk.com`}, 'https://*.zopim.com', 'https://zendesk-eu.my.sentry.io', {var: 'zendeskSubdomain', getVal: (v) => `wss://${v}.zendesk.com`}, 'wss://*.zopim.com'],
+    'script-src': ['https://static.zdassets.com', 'https://ekr.zdassets.com', 'https://ekr.zendesk.com', {var: 'zendeskSubdomain', getVal: (v) => `https://${v}.zendesk.com`}, 'https://*.zopim.com', 'https://zendesk-eu.my.sentry.io'],
     'connect-src': ['https://static.zdassets.com', 'https://ekr.zdassets.com', 'https://ekr.zendesk.com', {var: 'zendeskSubdomain', getVal: (v) => `https://${v}.zendesk.com`}, 'https://*.zopim.com', 'https://zendesk-eu.my.sentry.io', {var: 'zendeskSubdomain', getVal: (v) => `wss://${v}.zendesk.com`}, 'wss://*.zopim.com'],
     'style-src': ["'unsafe-inline'"],
     'img-src': ['https://v2assets.zopim.io', 'https://static.zdassets.com', 'data:'],
   },
   livechat: { // https://www.livechat.com/help/use-livechat-with-content-security-policy/ (v3)
-    'script-src': ["'unsafe-inline'", "'unsafe-eval'", "*.livechatinc.com", '*.youtube.com', '*.livechat-static.com', '*.google.com'],
-    'media-src': ['*.livechatinc.com', '*.youtube.com', '*.google.com', '*.livechat-static.com'],
-    'object-src': ['*.livechatinc.com', '*.youtube.com', '*.google.com'],
-    'child-src': ['*.livechatinc.com', '*.youtube.com', '*.google.com'],
-    'img-src': ['*.files-text.com', '*.livechatinc.com', '*.youtube.com', '*.google.com', '*.livechat-files.com', '*.livechat-static.com'],
-    'style-src': ['unsafe-inline', '*.livechatinc.com', '*.youtube.com', '*.google.com'],
-    'connect-src': ['*.livechatinc.com', '*.text.com', '*.youtube.com', '*.google.com'],
+    'script-src': ["'unsafe-inline'", "'unsafe-eval'", 'https://*.livechatinc.com', 'https://*.youtube.com', 'https://*.livechat-static.com', 'https://*.google.com'],
+    'media-src': ['https://*.livechatinc.com', 'https://*.youtube.com', 'https://*.google.com', 'https://*.livechat-static.com'],
+    'object-src': ['https://*.livechatinc.com', 'https://*.youtube.com', 'https://*.google.com'],
+    'child-src': ['https://*.livechatinc.com', 'https://*.youtube.com', 'https://*.google.com'],
+    'img-src': ['https://*.files-text.com', 'https://*.livechatinc.com', 'https://*.youtube.com', 'https://*.google.com', 'https://*.livechat-files.com', 'https://*.livechat-static.com'],
+    'style-src': ["'unsafe-inline'", 'https://*.livechatinc.com', 'https://*.youtube.com', 'https://*.google.com'],
+    'connect-src': ['https://*.livechatinc.com', 'https://*.text.com', 'https://*.youtube.com', 'https://*.google.com'],
   },
   ctm: {
     'script-src': [{var: 'ctmID', getVal: (v) => `https://${v}.tctm.co`}],
@@ -227,7 +228,7 @@ export const FEATURES = {
   },
 
   bugsnag: { // https://docs.bugsnag.com/platforms/javascript/faq/#can-i-use-bugsnag-with-csp
-    'connect-src': ['*.bugsnag.com'],
+    'connect-src': ['https://*.bugsnag.com'],
     'script-src': ['https://d2wy8f7a9ursnm.cloudfront.net'],
   },
   newrelic: { // https://docs.newrelic.com/docs/browser/new-relic-browser/getting-started/compatibility-requirements-browser-monitoring/
@@ -283,9 +284,6 @@ export const FEATURES = {
     'font-src': ['https://fonts.gstatic.com'],
     'style-src': ["'unsafe-inline'", 'https://fonts.googleapis.com'],
     'worker-src': ['blob:'],
-  },
-  slack: { // ToDo
-
   },
   legitScript: {
     'script-src': ['https://static.legitscript.com'],

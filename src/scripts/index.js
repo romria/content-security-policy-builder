@@ -1,9 +1,9 @@
 import '../styles/index.css';
 import {CSP_KEYS, FEATURES} from './constants';
 
-Object.fromEntries = arr => Object.assign({}, ...Array.from(arr, k => ({[k]: false})));
+const initFalseMap = arr => Object.assign({}, ...Array.from(arr, k => ({[k]: false})));
 const boxKeys = Object.keys(FEATURES);
-const boxValues = Object.fromEntries(boxKeys);
+const boxValues = initFalseMap(boxKeys);
 
 let cspObj = {};
 let cspStr = '';
@@ -89,7 +89,7 @@ const generateCSPString = () => {
 const generateCSP = () => {
   cspObj = generateCSPObj();
   cspStr = generateCSPString();
-  document.getElementById("result").innerHTML = cspStr;
+  document.getElementById("result").textContent = cspStr;
 }
 
 // Change events for feature toggling
@@ -113,7 +113,9 @@ Object.keys(customIDs).forEach(id => document.getElementById(id).addEventListene
 
 // Copy to clipboard
 document.getElementById("btnCopy").onclick = () => {
-  navigator.clipboard.writeText(cspStr);
+  navigator.clipboard.writeText(cspStr).catch(() => {
+    window.prompt('Copy to clipboard: Ctrl+C, Enter', cspStr);
+  });
 }
 
 // Reset
