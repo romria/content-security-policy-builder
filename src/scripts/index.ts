@@ -82,7 +82,7 @@ document.querySelectorAll<HTMLInputElement>('input[type="checkbox"]').forEach(cb
   });
 });
 
-// Only allow characters valid in hostnames/subdomains
+// Allow only [A-Za-z0-9-] characters and fall back to '*' when the result is empty
 const sanitizeCustomID = (value: string): string =>
   value.replace(/[^a-zA-Z0-9-]/g, '') || '*';
 
