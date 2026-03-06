@@ -1,5 +1,29 @@
-.idea
-.DS_*
-thumbs_db
-*.log
+# Dependencies
 node_modules
+
+# Build output
+dist
+
+# OS
+.DS_Store
+.DS_*
+Thumbs.db
+thumbs_db
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE
+.idea
+.vscode
+
+# TypeScript
+*.tsbuildinfo
+
+# Claude Code
+.claude
+
+# Env
+.env
+.env.*

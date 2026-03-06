@@ -1,11 +1,10 @@
 ### Content Security Policy builder
 
-Content Security Policy (CSP) is a security layer that helps to prevent certain types of attacks, including Cross-Site Scripting (XSS) and data injection attacks. This can be achieved by restricting which resources (JavaScript, CSS, Images, etc.) can be loaded on your website.
+Content Security Policy (CSP) is a security layer that helps prevent XSS and data injection attacks by restricting which resources can be loaded on your website.
 
-This project is made to simplify the process of populating CSP rules for `Content-Security-Policy` response header and `<meta>` tags.
+This project simplifies generating CSP rules for `Content-Security-Policy` response headers and `<meta>` tags.
 
-🔴IMPORTANT❗🔴 : This software is provided without warranty of any kind. Also, please make sure you understand what exactly each 
-header's setting is doing and test everything before adding this to your production website
+> **WARNING**: This software is provided without warranty. Understand what each directive does and test thoroughly before deploying to production.
 
 ### Prerequisites
 * [Node.js](https://nodejs.org/) v18.11.0 or higher
@@ -19,7 +18,25 @@ npm install
 ```bash
 npm start
 ```
-open [http://localhost:8000](http://localhost:8000)
+Open [http://localhost:8000](http://localhost:8000)
+
+### Build
+```bash
+npm run build   # Production build to dist/
+npm run typecheck  # TypeScript type check
+```
+
+### Supported integrations
+
+**Analytics**: Google Tag Manager, GA4, Google Ads, Google reCaptcha v3, Floodlight, Facebook Pixel, Mixpanel, Lucky Orange, Hotjar
+
+**Communication & Support**: Intercom, Chatlio, Zendesk, Live Chat, CallTrackingMetrics
+
+**Error & Performance**: BugSnag, New Relic, Sentry
+
+**Payments**: Stripe (JS, Checkout, Connect, Address Element, Redirect)
+
+**Misc**: Google Fonts, Google Maps, LegitScript, Gatsby
 
 ### General Resources
 * [Content-Security-Policy](https://content-security-policy.com/)
@@ -27,7 +44,6 @@ open [http://localhost:8000](http://localhost:8000)
 * [Mozilla Developer Network: Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
 * [CSP Level 3 W3C](https://www.w3.org/TR/CSP3/)
 * [CSP with Google](https://csp.withgoogle.com/docs/index.html)
-* [CSP A Successful Mess Between Hardening And Mitigation](https://speakerdeck.com/lweichselbaum/csp-a-successful-mess-between-hardening-and-mitigation)
 * [The unsafe-hashes Source List Keyword](https://content-security-policy.com/unsafe-hashes/)
 
 ### Testing
