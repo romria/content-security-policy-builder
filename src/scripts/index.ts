@@ -75,17 +75,21 @@ const generateCSP = () => {
 document.querySelectorAll<HTMLInputElement>('input[type="checkbox"]').forEach(cb => {
   cb.addEventListener('change', ({ target }) => {
     const { id, checked } = target as HTMLInputElement;
-    if (Object.hasOwn(boxValues, id)) {
+    if (id in boxValues) {
       boxValues[id] = checked;
       generateCSP();
     }
   });
 });
 
+// Only allow characters valid in hostnames/subdomains
+const sanitizeCustomID = (value: string): string =>
+  value.replace(/[^a-zA-Z0-9-]/g, '') || '*';
+
 // Text input events for custom IDs
 (Object.keys(customIDs) as CustomIdKey[]).forEach(id => {
   document.getElementById(id)!.addEventListener('input', e => {
-    customIDs[id] = (e.target as HTMLInputElement).value || '*';
+    customIDs[id] = sanitizeCustomID((e.target as HTMLInputElement).value);
     generateCSP();
   });
 });
