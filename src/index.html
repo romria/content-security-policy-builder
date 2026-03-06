@@ -1,10 +1,12 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <title>CSP Builder</title>
-    <meta name="description" content="">
+    <meta name="description" content="Interactive Content Security Policy (CSP) header builder for common third-party integrations.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <link rel="icon" href="data:,">
   </head>
   <body>
 
@@ -27,7 +29,7 @@
   <fieldset>
     <legend>Enable website features:</legend>
 
-    <b>Analytics</b>
+    <strong>Analytics</strong>
     <div class="row">
       <input class="checkbox" type="checkbox" id="gtm" name="gtm">
       <label class="label" for="gtm">Google Tag Manager</label>
@@ -53,14 +55,6 @@
       <label class="label" for="gTLD">Include all Google's TLD</label>
     </div>
     <div class="row tab">
-      <input class="checkbox" type="checkbox" id="gaUniv" name="gaUniv">
-      <label class="label" for="gaUniv">Universal Analytics (Google Analytics) tag</label>
-    </div>
-    <div class="row tab">
-      <input class="checkbox" type="checkbox" id="gOpt" name="gOpt">
-      <label class="label" for="gOpt">Google Optimize tag</label>
-    </div>
-    <div class="row tab">
       <input class="checkbox" type="checkbox" id="gAds" name="gAds">
       <label class="label" for="gAds">Google Ads conversion tag</label>
     </div>
@@ -69,8 +63,8 @@
       <label class="label" for="gAdsRemarketing">Google Ads remarketing tag</label>
     </div>
     <div class="row tab">
-      <input class="checkbox" type="checkbox" id="gRecapcha" name="gRecapcha">
-      <label class="label" for="gRecapcha">Google reCapcha v3</label>
+      <input class="checkbox" type="checkbox" id="gRecaptcha" name="gRecaptcha">
+      <label class="label" for="gRecaptcha">Google reCaptcha v3</label>
     </div>
     <div class="row tab">
       <input class="checkbox" type="checkbox" id="floodl" name="floodl">
@@ -109,7 +103,7 @@
       <label class="label" for="hotjar">Hotjar</label>
     </div>
 
-    <b>Communication & Customer Support</b>
+    <strong>Communication &amp; Customer Support</strong>
     <div class="row">
       <input class="checkbox" type="checkbox" id="intercom" name="intercom">
       <label class="label" for="intercom">Intercom</label>
@@ -139,13 +133,13 @@
       <input type="text" id="ctmID" name="ctmID" placeholder="* if not specified">
     </div>
 
-    <b>Frameworks</b>
+    <strong>Frameworks</strong>
     <div class="row">
       <input class="checkbox" type="checkbox" id="gatsby" name="gatsby">
       <label class="label" for="gatsby">Gatsby</label>
     </div>
 
-    <b>Error & performance tracking</b>
+    <strong>Error &amp; performance tracking</strong>
     <div class="row">
       <input class="checkbox" type="checkbox" id="bugsnag" name="bugsnag">
       <label class="label" for="bugsnag">BugSnag</label>
@@ -159,7 +153,7 @@
       <label class="label" for="sentry">Sentry</label>
     </div>
 
-    <b>Payments</b>
+    <strong>Payments</strong>
     <div class="row">
       <input class="checkbox" type="checkbox" id="stripe" name="stripe">
       <label class="label" for="stripe">Stripe.js basic rules</label>
@@ -181,7 +175,7 @@
       <label class="label" for="stripeConnect">Stripe Connect</label>
     </div>
 
-    <b>Misc</b>
+    <strong>Misc</strong>
     <div class="row">
       <input class="checkbox" type="checkbox" id="gFonts" name="gFonts">
       <label class="label" for="gFonts">Google Fonts</label>
@@ -196,10 +190,6 @@
     </div>
 
   </fieldset>
-
-  <script async>
-
-  </script>
 
   </body>
 </html>
