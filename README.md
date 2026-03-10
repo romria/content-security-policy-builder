@@ -7,7 +7,7 @@ This project simplifies generating CSP rules for `Content-Security-Policy` respo
 > **WARNING**: This software is provided without warranty. Understand what each directive does and test thoroughly before deploying to production.
 
 ### Prerequisites
-* [Node.js](https://nodejs.org/) v18.11.0 or higher
+* [Node.js](https://nodejs.org/) v22.0.0 or higher
 
 ### Installation
 ```bash
