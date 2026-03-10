@@ -15,7 +15,7 @@ npm run typecheck # TypeScript type check for src/ and webpack config
 
 This is a single-page **Content Security Policy (CSP) builder** — a vanilla TypeScript web app with no framework. Users check boxes for third-party integrations they use, and the app generates a ready-to-use CSP header string.
 
-**Stack**: Webpack 5 + ts-loader (TypeScript, no Babel) + CSS via style-loader (dev) / mini-css-extract-plugin (prod). The webpack config itself is TypeScript (`webpack.config.ts`), loaded at build time via webpack-cli's native ESM support (dynamic `import()`); `ts-node` is required as a peer for TypeScript transpilation.
+**Stack**: Webpack 5 + ts-loader (TypeScript, no Babel) + CSS via style-loader (dev) / mini-css-extract-plugin (prod). The webpack config itself is TypeScript (`webpack.config.ts`), using ES `import` syntax and full TypeScript types. It is loaded by webpack-cli via its standard `interpret`/`rechoir` require hooks for `.ts` files; `ts-node` is included as a direct devDependency so webpack-cli can transpile the config at runtime.
 
 **Key files:**
 
