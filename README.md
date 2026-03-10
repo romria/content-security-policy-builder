@@ -22,8 +22,8 @@ Open [http://localhost:8000](http://localhost:8000)
 
 ### Build
 ```bash
-npm run build   # Production build to dist/
-npm run typecheck  # TypeScript type check
+npm run build      # Production build to dist/
+npm run typecheck  # TypeScript type check (src/ and webpack config)
 ```
 
 ### Supported integrations

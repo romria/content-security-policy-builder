@@ -1,13 +1,23 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+import path from 'path';
+import { fileURLToPath } from 'url';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import type { Configuration } from 'webpack';
+import type { Configuration as DevServerConfiguration } from 'webpack-dev-server';
 
-module.exports = (env, { mode = 'development' } = {}) => {
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+type WebpackConfig = Configuration & { devServer?: DevServerConfiguration };
+
+const config = (
+  _env: Record<string, unknown>,
+  { mode = 'development' }: { mode?: string } = {},
+): WebpackConfig => {
   const isProd = mode === 'production';
 
   return {
     target: 'web',
-    mode,
+    mode: isProd ? 'production' : 'development',
     devtool: isProd ? 'source-map' : 'eval-source-map',
     entry: './src/scripts/index.ts',
     output: {
@@ -48,3 +58,5 @@ module.exports = (env, { mode = 'development' } = {}) => {
     ],
   };
 };
+
+export default config;
