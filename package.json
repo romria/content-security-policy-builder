@@ -5,10 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --config=webpack.config.ts --mode=development --progress",
     "build": "webpack --config=webpack.config.ts --mode=production",
-    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.node.json"
-  },
-  "ts-node": {
-    "project": "tsconfig.node.json"
+    "typecheck": "tsc --noEmit"
   },
   "license": "Unlicense",
   "devDependencies": {
